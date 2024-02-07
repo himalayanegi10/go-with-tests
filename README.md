@@ -42,7 +42,13 @@ go run <filename>.go
 go test
 ```
 
-## Instruction 4: Benchmarking in Go
+## Instruction 4: Run Example in GO
+
+```bash
+go test -v
+```
+
+## Instruction 5: Benchmarking in Go
 
 In Linux -
 ```bash
