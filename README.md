@@ -41,3 +41,26 @@ go run <filename>.go
 ```bash
 go test
 ```
+
+## Instruction 4: Benchmarking in Go
+
+In Linux -
+```bash
+go test -bench=.
+```
+
+In windows -
+```bash
+go test -bench="."
+```
+
+Sample Output-
+```bash
+goos: windows
+goarch: amd64
+pkg: github.com/himalayanegi10/go-with-tests/src/iteration
+cpu: AMD Ryzen 7 5800H with Radeon Graphics
+BenchmarkRepeat-16      13069944                88.61 ns/op
+PASS
+ok      github.com/himalayanegi10/go-with-tests/src/iteration   1.681s
+```

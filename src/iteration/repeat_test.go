@@ -11,3 +11,10 @@ func TestRepeat(t *testing.T) {
 		t.Errorf("Expected %q found %q", expected, repeated)
 	}
 }
+
+
+func BenchmarkRepeat(b *testing.B) {
+	for i := 0 ; i < b.N ; i++ {
+		Repeat("a")
+	}
+}
