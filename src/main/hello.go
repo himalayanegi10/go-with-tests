@@ -5,6 +5,7 @@ import "fmt"
 const englishHelloPrefix = "Hello, "
 const spanishHelloPrefix = "Hola, "
 const frenchHelloPrefix = "Bonjour, "
+const sanskritHelloPrefix = "Namah te, "
 const exclamation = " !"
 
 func Hello(name string, language string) string {
@@ -13,12 +14,14 @@ func Hello(name string, language string) string {
 	}
 
 	prefix := englishHelloPrefix
-	
+
 	switch language {
 	case "spanish":
 		prefix = spanishHelloPrefix
 	case "french":
 		prefix = frenchHelloPrefix
+	case "sanskrit":
+		prefix = sanskritHelloPrefix
 	}
 
 	return prefix + name + exclamation
