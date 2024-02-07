@@ -4,6 +4,7 @@ import "fmt"
 
 const englishHelloPrefix = "Hello, "
 const spanishHelloPrefix = "Hola, "
+const frenchHelloPrefix = "Bonjour, "
 const exclamation = " !"
 
 func Hello(name string, language string) string {
@@ -14,7 +15,11 @@ func Hello(name string, language string) string {
 	if language == "spanish" {
 		return spanishHelloPrefix + name + exclamation
 	}
-	
+
+	if language == "french" {
+		return frenchHelloPrefix + name + exclamation
+	}
+
 	return englishHelloPrefix + name + exclamation
 }
 
