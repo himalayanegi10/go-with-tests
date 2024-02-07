@@ -2,8 +2,11 @@ package main
 
 import "fmt"
 
+const englishHelloPrefix = "Hello, "
+const exclamation = " !"
+
 func Hello(name string) string {
-	return "Hello, " + name + " !"
+	return englishHelloPrefix + name + exclamation
 }
 
 func main() {
