@@ -6,7 +6,7 @@ import (
 
 func TestSum(t *testing.T) {
 	t.Run("Testing Sum", func(t *testing.T){
-		numbers := [5]int{1,2,3,4,5}
+		numbers := []int{1,2,3,4,5}
 		sum := Sum(numbers)
 		want := 15
 		if sum != want {
@@ -14,6 +14,16 @@ func TestSum(t *testing.T) {
 		}
 		// assertEquals(t, sum, want, numbers)
 	}) 
+
+	t.Run("Testing sum by passing slice", func(t *testing.T){
+		mySlice := []int{1,2,9,4,5}
+		sum := Sum(mySlice)
+		expected := 21
+
+		if sum != expected {
+			t.Errorf("Expected %d but found %d and slice is %v", expected, sum, mySlice)
+		}
+	})
 }
 
 // func assertEquals(t *testing.T, sum int, want int, numbers [...]int) {
