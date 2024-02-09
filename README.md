@@ -42,7 +42,7 @@ go run <filename>.go
 go test
 ```
 
-## Instruction 4: Run Example in GO
+## Instruction 4: Run Example in Go
 
 ```bash
 go test -v
@@ -69,4 +69,11 @@ cpu: AMD Ryzen 7 5800H with Radeon Graphics
 BenchmarkRepeat-16      13069944                88.61 ns/op
 PASS
 ok      github.com/himalayanegi10/go-with-tests/src/iteration   1.681s
+```
+
+## Instruction 6: Coverage in Go
+
+Coverage can be tested by - 
+```bash
+go test -cover
 ```
