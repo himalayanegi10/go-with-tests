@@ -81,18 +81,21 @@ func TestArea(t *testing.T) {
 func TestAreaRefactored(t *testing.T) {
 
 	areaTests := []struct {
+		name string
 		shape Shape
-		want float64
+		hasArea float64
 	} {
-		{shape: Rectangle{6,12}, want: 72},
-		{shape: Circle{10}, want: 314.1592653589793},
-		{shape: Triangle{10,5}, want: 25},
+		{name: "Rectangle", shape: Rectangle{6,12}, hasArea: 72},
+		{name: "Circle", shape: Circle{10}, hasArea: 314.1592653589793},
+		{name: "Triangle", shape: Triangle{10,5}, hasArea: 25.0},
 	}
 
 	for _, tt := range areaTests {
-		got := tt.shape.Area()
-		if got != tt.want {
-			t.Errorf("Expected %g got %g", tt.want, got)
-		}
+		t.Run(tt.name, func(t *testing.T) {
+			got := tt.shape.Area()
+			if got != tt.hasArea {
+				t.Errorf("Struct %#v Expected %g got %g", tt.shape, tt.hasArea, got)
+			}
+		})
 	}
 }
