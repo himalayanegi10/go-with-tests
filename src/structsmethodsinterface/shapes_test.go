@@ -75,3 +75,24 @@ func TestArea(t *testing.T) {
 		checkArea(t, circle, 314.1592653589793)
 	})
 }
+
+// Refactoring Above func TestArea
+
+func TestAreaRefactored(t *testing.T) {
+
+	areaTests := []struct {
+		shape Shape
+		want float64
+	} {
+		{shape: Rectangle{6,12}, want: 72},
+		{shape: Circle{10}, want: 314.1592653589793},
+		{shape: Triangle{10,5}, want: 25},
+	}
+
+	for _, tt := range areaTests {
+		got := tt.shape.Area()
+		if got != tt.want {
+			t.Errorf("Expected %g got %g", tt.want, got)
+		}
+	}
+}
