@@ -25,7 +25,7 @@ func TestPerimeter(t *testing.T) {
 
 	t.Run("Test Perimeter of a rectangle using struct", func(t *testing.T) {
 		rectangle := Rectangle{5.0, 6.0}
-		got := Perimeter(rectangle)
+		got := rectangle.Perimeter()
 		want := 22.0
 
 		if got != want {
@@ -35,7 +35,7 @@ func TestPerimeter(t *testing.T) {
 
 	t.Run("Test Area of a rectangle using struct", func(t *testing.T) {
 		rectangle := Rectangle{5.0, 6.0}
-		got := Area(rectangle)
+		got := rectangle.Area()
 		want := 30.0
 
 		if got != want {
@@ -43,13 +43,13 @@ func TestPerimeter(t *testing.T) {
 		}
 	})
 
-	// t.Run("Test Area of a Circle using struct", func(t *testing.T) {
-	// 	circle := Circle{10.0}
-	// 	got := Area(circle)
-	// 	want := 314.1592653589793
+	t.Run("Test Area of a Circle using struct", func(t *testing.T) {
+		circle := Circle{10.0}
+		got := circle.Area()
+		want := 314.1592653589793
 
-	// 	if got != want {
-	// 		t.Errorf("Expected %g got %g", want, got)
-	// 	}
-	// })
+		if got != want {
+			t.Errorf("Expected %g got %g", want, got)
+		}
+	})
 }
