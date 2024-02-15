@@ -24,6 +24,11 @@ godoc -http :8000
 ```
 then visit [localhost:8000/pkg/](http://localhost:8000/pkg/) to access Go docs.
 
+Errcheck -
+```bash
+go install github.com/kisielk/errcheck@latest
+```
+
 ## Instruction 1: Go project initialization
 
 ```bash
@@ -76,4 +81,11 @@ ok      github.com/himalayanegi10/go-with-tests/src/iteration   1.681s
 Coverage can be tested by - 
 ```bash
 go test -cover
+```
+
+## Instruction 7: Error Check in Go
+
+errcheck is used to check errors - 
+``` bash
+errcheck .
 ```
