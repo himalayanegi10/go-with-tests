@@ -14,10 +14,14 @@ func TestPointers(t *testing.T) {
 		}
 	}
 
-	assertError := func(t testing.TB, err error) {
+	assertError := func(t testing.TB, err error, want string) {
 		t.Helper()
 		if err == nil {
-			t.Error("Wanted an Error, but didn't get one")
+			t.Fatal("Wanted an Error, but didn't get one")
+		}
+
+		if err.Error() != want {
+			t.Errorf("Got %q, wanted %q", err, want)
 		}
 	}
 
@@ -38,7 +42,7 @@ func TestPointers(t *testing.T) {
 		// wallet := Wallet{balance: Bitcoin(20)}
 		wallet := Wallet{startingBalance}
 		err := wallet.Withdraw(Bitcoin(100))
-		assertError(t, err)
+		assertError(t, err, "cannot withdraw, insufficient funds")
 		assertBalance(t, wallet, startingBalance)
 	})
 }
