@@ -23,3 +23,7 @@ func (w *Wallet) Deposit(amount Bitcoin) { // use pointers just like C
 func (b Bitcoin) String() string {
 	return fmt.Sprintf("%g BTC", b)
 }
+
+func (w *Wallet) Withdraw(amount Bitcoin) {
+	w.balance -= amount
+}

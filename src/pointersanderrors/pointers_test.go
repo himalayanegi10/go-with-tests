@@ -17,4 +17,16 @@ func TestPointers(t *testing.T) {
 			t.Errorf("Wanted %s got %s", want, got)
 		}
 	})
+
+	t.Run("Wallet Withdraw Bitcoin", func(t *testing.T) {
+		wallet := Wallet{balance: Bitcoin(30)}
+		wallet.Withdraw(Bitcoin(14))
+
+		got := wallet.Balance()
+		want := Bitcoin(16)
+
+		if got != want {
+			t.Errorf("Expected %s but got %s", want, got)
+		}
+	})
 }
