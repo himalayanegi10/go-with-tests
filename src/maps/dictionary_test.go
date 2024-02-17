@@ -19,6 +19,17 @@ func assertError(t testing.TB, got, want error) {
 	}
 }
 
+func assertDefinition(t testing.TB, dictionary Dictionary, word , definition string) {
+	t.Helper()
+	got , err := dictionary.Search(word)
+
+	if err != nil {
+		t.Fatal("should find added word:", err)
+	}
+
+	assertStrings(t, got , definition)	
+}
+
 func TestDictionary(t *testing.T) {
 	dictionary := Dictionary{Dict: map[string]string{"test": "this is a test string"}}
 
@@ -50,16 +61,21 @@ func TestDictionary(t *testing.T) {
 func TestAdd(t *testing.T) {
 	dictionary := Dictionary{Dict: map[string]string{"test": "this is a test string"}}
 
-	t.Run("Add an key:value pair", func(t *testing.T) {
-		dictionary.Add("name", "Himalaya Singh Negi")
+	t.Run("Add new key:value pair", func(t *testing.T) {
+		word := "name"
+		definition := "Himalaya Singh Negi"
+		err := dictionary.Add(word, definition)
 
-		got, err := dictionary.Search("test")
-		want := "this is a test string"
+		assertError(t, err, nil)
+		assertDefinition(t, dictionary, word, definition)
+	})
 
-		if err != nil {
-			t.Fatal("should find added word:", err)
-		}
-		// assertError(t, err, ErrorNotFound)
-		assertStrings(t, got, want)
+	t.Run("Add existing key:value pair", func(t *testing.T) {
+		word := "test"
+		definition := "this is a test string"
+		err := dictionary.Add(word, definition)
+
+		assertError(t, err, ErrWordExists)
+		assertDefinition(t, dictionary, word, definition)
 	})
 }

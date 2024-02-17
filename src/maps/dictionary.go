@@ -14,6 +14,7 @@ import (
 */
 
 var ErrorNotFound = errors.New("could not find the word you were looking for")
+var ErrWordExists = errors.New("key already exists")
 
 func (d *Dictionary) Search(searchWord string) (string, error) {
 	got, ok := d.Dict[searchWord]
@@ -23,8 +24,13 @@ func (d *Dictionary) Search(searchWord string) (string, error) {
 	return got, nil
 }
 
-func (d *Dictionary) Add(key, value string) {
+func (d *Dictionary) Add(key, value string) (error){
+	_, err := d.Search(key)
+	if err == nil {
+		return ErrWordExists
+	}
 	d.Dict[key] = value
+	return nil
 }
 
 type Dictionary struct {
