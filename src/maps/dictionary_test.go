@@ -5,6 +5,9 @@ import (
 )
 
 func TestDictionary(t *testing.T) {
+
+	dictionary := Dictionary{Dict: map[string]string{"test": "this is a test string"}}
+
 	assertStrings := func(t testing.TB, got, want string) {
 		t.Helper()
 		if got != want {
@@ -12,14 +15,34 @@ func TestDictionary(t *testing.T) {
 		}
 	}
 
+	assertError := func(t testing.TB, got, want error) {
+		t.Helper()
+
+		if got != want {
+			t.Errorf("Got %q, want %q", got, want)
+		}
+	}
+
 	t.Run("Search a word", func(t *testing.T){
 
 		// dictionary := map[string]string{"test": "this is a test string"}
 		// got := Search(dictionary, "test")
-		dictionary := Dictionary{Dict: map[string]string{"test": "this is a test string"}}
-		got := dictionary.Search("test")
+		got, _ := dictionary.Search("test")
 		want := "this is a test string"
 		assertStrings(t, got, want)
+		
+	})
+
+	t.Run("Search an absent word", func(t *testing.T){
+
+		_, err := dictionary.Search("testo")
+
+		// if err == nil {
+		// 	t.Fatal("Expected to get an error.")
+		// }
+
+		// assertStrings(t, err.Error(), want)
+		assertError(t, err, ErrorNotFound)
 		
 	})
 }
