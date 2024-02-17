@@ -14,6 +14,10 @@ func (d *Dictionary) Search(searchWord string) (string, error) {
 	return got, nil
 }
 
+func (d *Dictionary) Add(key, value string) {
+	d.Dict[key] = value
+}
+
 type Dictionary struct {
 	Dict map[string]string
 }
