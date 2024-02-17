@@ -1,9 +1,5 @@
 package maps
 
-import (
-	"errors"
-)
-
 /*
 	NEVER declare map like this 
 	var dict map[string]string
@@ -13,8 +9,16 @@ import (
 	var dict = map[string]string{}
 */
 
-var ErrorNotFound = errors.New("could not find the word you were looking for")
-var ErrWordExists = errors.New("key already exists")
+const (
+	ErrorNotFound = DictionaryErr("could not find the word you were looking for")
+	ErrWordExists = DictionaryErr("key already exists")
+)
+
+type DictionaryErr string
+
+func (e DictionaryErr) Error() string { // This is an interface method
+	return string(e)
+}
 
 func (d *Dictionary) Search(searchWord string) (string, error) {
 	got, ok := d.Dict[searchWord]
