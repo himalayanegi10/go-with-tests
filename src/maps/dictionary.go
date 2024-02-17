@@ -4,6 +4,15 @@ import (
 	"errors"
 )
 
+/*
+	NEVER declare map like this 
+	var dict map[string]string
+
+	INSTEAD use this
+	var dict = make(map[string]string)
+	var dict = map[string]string{}
+*/
+
 var ErrorNotFound = errors.New("could not find the word you were looking for")
 
 func (d *Dictionary) Search(searchWord string) (string, error) {
