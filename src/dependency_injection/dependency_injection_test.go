@@ -3,6 +3,7 @@ package dependency_injection
 import (
 	"testing"
 	"bytes"
+	"os"
 )
 
 func TestDependency(t *testing.T) {
@@ -15,4 +16,8 @@ func TestDependency(t *testing.T) {
 	if got != want {
 		t.Errorf("got %q want %q", got , want)
 	}
+}
+
+func TestStdoutDependency(t *testing.T) {
+	Greet(os.Stdout, "Chris")
 }
