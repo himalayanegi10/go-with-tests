@@ -79,3 +79,44 @@ func TestAdd(t *testing.T) {
 		assertDefinition(t, dictionary, word, definition)
 	})
 }
+
+func TestUpdate(t *testing.T) {
+	word := "test"
+	definition := "this is just a test"
+	dictionary := Dictionary{Dict: map[string]string{word: definition}}
+	newDefinition := "new definition"
+	dictionary.Update(word, newDefinition)
+	assertDefinition(t, dictionary, word, newDefinition)
+
+	t.Run("existing word", func(t *testing.T){
+		word := "test"
+		definition := "this is just a test"
+		dictionary := Dictionary{Dict : map[string]string{word: definition}}
+		newDefinition := "new Definition"
+
+		err := dictionary.Update(word, newDefinition)
+		
+		assertError(t, err, nil)
+		assertDefinition(t, dictionary, word, newDefinition)
+	})
+	
+	t.Run("new word", func(t *testing.T){
+		word := "test"
+		definition := "this is just a test"
+		dictionary := Dictionary{Dict: map[string]string{}}
+
+		err := dictionary.Update(word, definition)
+		assertError(t, err, ErrWordDoesNotExist)
+	})
+}
+
+func TestDelete(t *testing.T){
+	word := "test"
+	dictionary := Dictionary{Dict: map[string]string{word : "test definition"}}
+
+	err := dictionary.Delete(word)
+	assertError(t, err, nil)
+
+	_, err = dictionary.Search(word)
+	assertError(t, err, ErrorNotFound)
+}
