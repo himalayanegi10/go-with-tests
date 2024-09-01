@@ -89,3 +89,10 @@ errcheck is used to check errors -
 ``` bash
 errcheck .
 ```
+
+## Instruction 8: Race test in Go
+
+Race can be tested by -
+```bash
+go test -race
+```
