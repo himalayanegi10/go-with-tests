@@ -28,6 +28,12 @@ func TestRacer(t *testing.T) {
 
 	defer slowServer.Close()
 	defer fastServer.Close()
+	/*
+	defer
+	=====
+	By prefixing a function call with defer it will now call 
+	that function at the end of the containing function.
+	*/
 
 	slowURL := slowServer.URL
 	fastURL := fastServer.URL
