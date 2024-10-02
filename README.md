@@ -96,3 +96,10 @@ Race can be tested by -
 ```bash
 go test -race
 ```
+
+## Instruction 9: Vet in Go
+
+Code can be tested for subtle bugs by vet
+```bash
+go vet
+```
