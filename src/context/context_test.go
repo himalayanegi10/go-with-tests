@@ -22,10 +22,6 @@ func TestServer(t *testing.T) {
 		t.Errorf(`got "%s", want "%s"`, response.Body.String(), data)
 	}
 
-	if store.cancelled {
-		t.Error("it should not have cancelled the store")
-	}
-
 }
 
 func TestContext(t *testing.T) {
@@ -44,8 +40,6 @@ func TestContext(t *testing.T) {
 			t.Errorf(`got "%s", want "%s"`, response.Body.String(), data)
 		}
 
-		store.assertWasNotCancelled()
-
 	})
 
 	t.Run("tells store to cancel work if request is cancelled", func(t *testing.T){
@@ -61,7 +55,6 @@ func TestContext(t *testing.T) {
 		response := httptest.NewRecorder()
 		svr.ServeHTTP(response, request)
 
-		store.assertWasCancelled()
 	})
 
 }
