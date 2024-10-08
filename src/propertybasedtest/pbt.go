@@ -1,8 +1,17 @@
 package pbt
 
+import "strings"
+
 func ConvertToRoman(arabic int) string {
-	if arabic == 2 {
-		return "II"
+
+	if arabic == 4 {
+		return "IV"
 	}
-	return "I"
+
+	var result strings.Builder
+	for i := 0; i < arabic; i++ {
+		result.WriteString("I")
+	}
+
+	return result.String()
 }
