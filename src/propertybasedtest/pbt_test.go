@@ -34,6 +34,7 @@ func TestRomanNumerals(t *testing.T) {
 		{"400 gets converted to CD", 400, "CD"},
 		{"469 gets converted to CDLXIX", 469, "CDLXIX"},
 		{"500 gets converted to D", 500, "D"},
+		{"1984 gets converted to MCMLXXXIV", 1984, "MCMLXXXIV"},
 	}
 
 	for _, test := range cases {
