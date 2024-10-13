@@ -96,3 +96,5 @@ func TestConvertingToArabic(t *testing.T) {
 		})
 	}
 }
+
+// Above are Example Based Tests ^^^
