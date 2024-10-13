@@ -1,13 +1,15 @@
 package pbt
 
 import (
-	"testing"
 	"fmt"
+	"testing"
+	"testing/quick"
+	"log"
 )
 
 func TestRomanNumerals(t *testing.T) {
 	cases := []struct {
-		Arabic		int
+		Arabic		uint16
 		Roman string
 	}{
 		{Arabic: 1, Roman: "I"},
@@ -54,7 +56,7 @@ func TestRomanNumerals(t *testing.T) {
 
 func TestConvertingToArabic(t *testing.T) {
 	cases := []struct {
-		Arabic		int
+		Arabic		uint16
 		Roman string
 	}{
 		{Arabic: 1, Roman: "I"},
@@ -98,3 +100,21 @@ func TestConvertingToArabic(t *testing.T) {
 }
 
 // Above are Example Based Tests ^^^
+
+func TestPropertiesOfConversion(t *testing.T) {
+	assertion := func(arabic uint16) bool {
+		if arabic > 3999 {
+			log.Println(arabic)
+			return true
+		}
+		roman := ConvertToRoman(arabic)
+		fromRoman := ConvertToArabic(roman)
+		return fromRoman == arabic
+	}
+
+	if err := quick.Check(assertion, &quick.Config{
+		MaxCount: 1000,
+	}); err != nil {
+		t.Error("failed checks", err)
+	}
+}

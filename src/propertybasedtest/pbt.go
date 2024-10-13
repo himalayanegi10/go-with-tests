@@ -3,7 +3,7 @@ package pbt
 import "strings"
 
 type RomanNumeral struct {
-	Value int
+	Value uint16
 	Symbol string
 }
 
@@ -24,7 +24,7 @@ var allRomanNumerals = []RomanNumeral {
 }
 
 
-func ConvertToRoman(arabic int) string {
+func ConvertToRoman(arabic uint16) string {
 
 	var result strings.Builder
 
@@ -39,8 +39,8 @@ func ConvertToRoman(arabic int) string {
 }
 
 
-func ConvertToArabic(roman string) int {
-	arabic := 0
+func ConvertToArabic(roman string) uint16 {
+	arabic := uint16(0)
 	for _, numeral := range allRomanNumerals {
 		for strings.HasPrefix(roman, numeral.Symbol) {
 			arabic += numeral.Value
