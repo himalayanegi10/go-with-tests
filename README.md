@@ -103,3 +103,10 @@ Code can be tested for subtle bugs by vet
 ```bash
 go vet
 ```
+
+## Instruction 10: Download packages in Go
+
+New packages used in imports can be downloaded by mod tidy
+```bash
+go mod tidy
+```
