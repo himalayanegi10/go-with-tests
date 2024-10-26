@@ -54,6 +54,44 @@ func TestStack(t *testing.T) {
 		AssertEqual(t, value, "hello")
 		AssertTrue(t, myStackOfStrings.IsEmpty())
 	})
+
+	t.Run("Generic stack of Ints", func(t *testing.T) {
+		myStackOfInts := new(Stack[int])
+
+		// check stack is empty
+		AssertTrue(t, myStackOfInts.IsEmpty())
+
+		// add a thing, then check it's not empty
+		myStackOfInts.Push(123)
+		AssertFalse(t, myStackOfInts.IsEmpty())
+
+		// add another thing, pop it back again
+		myStackOfInts.Push(456)
+		value, _ := myStackOfInts.Pop()
+		AssertEqual(t, value, 456)
+		value, _ = myStackOfInts.Pop()
+		AssertEqual(t, value, 123)
+		AssertTrue(t, myStackOfInts.IsEmpty())
+	})
+
+	t.Run("Generic stack of string", func(t *testing.T) {
+		myStackOfInts := new(Stack[string])
+
+		// check stack is empty
+		AssertTrue(t, myStackOfInts.IsEmpty())
+
+		// add a thing, then check it's not empty
+		myStackOfInts.Push("123")
+		AssertFalse(t, myStackOfInts.IsEmpty())
+
+		// add another thing, pop it back again
+		myStackOfInts.Push("456")
+		value, _ := myStackOfInts.Pop()
+		AssertEqual(t, value, "456")
+		value, _ = myStackOfInts.Pop()
+		AssertEqual(t, value, "123")
+		AssertTrue(t, myStackOfInts.IsEmpty())
+	})
 }
 
 func AssertEqual[T comparable](t *testing.T, got, want T) {
