@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -13,6 +14,21 @@ func TestFind(t *testing.T) {
 		})
 		AssertTrue(t, found)		
 		AssertEqual(t, firstEvenNumber, 2)
+	})
+
+	t.Run("find the best ufc fighter", func(t *testing.T) {
+		fighters := []Fighter{
+			{Name: "Alex Pereira", aka: "Po atan"},
+			{Name: "Jon Jones", aka: "Bones"},
+			{Name: "Ilia Topuria", aka: "El Matador"},
+		}
+
+		p4p, found := Find(fighters, func(f Fighter) bool {
+			return strings.Contains(f.Name, "Ilia")
+		})
+
+		AssertTrue(t, found)
+		AssertEqual(t, p4p, Fighter{Name: "Ilia Topuria", aka: "El Matador"})
 	})
 }
 
