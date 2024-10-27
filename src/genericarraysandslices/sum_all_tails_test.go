@@ -28,3 +28,19 @@ func TestSumAllTrails(t *testing.T){
 		checkSums(t, got, want)
 	})
 }
+
+func TestReduce(t *testing.T) {
+	t.Run("Test Reduce", func(t *testing.T) {
+		sum := func(a, b int) int {
+			return a + b
+		}
+		test_array := []int{1,2,3,4,5};
+
+		got := Reduce(test_array, sum)
+		want := 15
+
+		if got != want {
+			t.Errorf("got %v, expected %v", got, want)
+		}
+	})
+}
