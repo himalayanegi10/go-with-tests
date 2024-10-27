@@ -1,10 +1,8 @@
 package main
 
 func Sum(numbers []int) (result int) {
-	for _, number := range numbers {
-		result += number
-	}
-	return
+	add := func(a, b int) int { return a + b}
+	return Reduce(numbers, add)
 }
 
 func Reduce[T any](array []T, F func(a, b T) T) T {
