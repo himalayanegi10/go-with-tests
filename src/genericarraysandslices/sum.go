@@ -7,14 +7,10 @@ func Sum(numbers []int) (result int) {
 	return
 }
 
-func Reduce[T comparable](array []T, F func(a, b T) T) T {
-	length := len(array)
-	switch(length){
-	case 0:
-		var zero T
-		return zero
-	default:
-		result := F(array[0], Reduce(array[1:], F))
-		return result
+func Reduce[T any](array []T, F func(a, b T) T) T {
+	var result T
+	if(len(array) > 0) {
+		result = F(array[0], Reduce(array[1:], F))
 	}
+	return result
 }
