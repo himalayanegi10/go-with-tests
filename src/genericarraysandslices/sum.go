@@ -5,7 +5,7 @@ func Sum(numbers []int) (result int) {
 	return Reduce(numbers, add, 0)
 }
 
-func Reduce[T any](array []T, F func(a, b T) T, accumulator T) T {
+func Reduce[T, A any](array []T, F func(a A, b T) A, accumulator A) A {
 	var result = accumulator
 	for _, x := range array {
 		result = F(result, x)
