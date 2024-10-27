@@ -36,7 +36,7 @@ func TestReduce(t *testing.T) {
 		}
 		test_array := []int{1,2,3,4,5};
 
-		got := Reduce(test_array, sum)
+		got := Reduce(test_array, sum, 0)
 		want := 15
 
 		if got != want {

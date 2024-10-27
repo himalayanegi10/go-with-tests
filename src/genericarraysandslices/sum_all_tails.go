@@ -1,16 +1,13 @@
 package main
 
 func SumAllTrails(numbersToSum ...[]int) []int {
-	var sums []int
-
-	for _, numbers := range numbersToSum {
-		if len(numbers) == 0 {
-			sums = append(sums, 0)
+	sumTail := func(a, b []int) []int {
+		if len(b) == 0 {
+			return append(a, 0)
 		} else {
-			tail := numbers[1:]
-			sums = append(sums, Sum(tail))
+			tail := b[1:]
+			return append(a, Sum(tail))
 		}
 	}
-
-	return sums
+	return Reduce(numbersToSum, sumTail, []int{})
 }
